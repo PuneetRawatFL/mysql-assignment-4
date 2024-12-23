@@ -1,0 +1,57 @@
+Date function assignment
+
+1. Write a query to select the current date and time from the server.
+mysql> select current_timestamp() as date_and_time;
++---------------------+
+| date_and_time       |
++---------------------+
+| 2024-12-23 10:45:47 |
++---------------------+
+
+2. Write a query to find the current date only (without the time) from the server.
+mysql> select curdate() as date;
++------------+
+| date       |
++------------+
+| 2024-12-23 |
++------------+
+
+3. Write a query to find the current time only (without the date) from the server.
+mysql> select curtime() as time;
++----------+
+| time     |
++----------+
+| 10:46:26 |
++----------+
+
+4. Write a query to find the date 30 days before the current date.
+mysql> select date_sub((select curdate()), interval 30 day);
++-----------------------------------------------+
+| date_sub((select curdate()), interval 30 day) |
++-----------------------------------------------+
+| 2024-11-23                                    |
++-----------------------------------------------+
+
+5. Write a query to find the date 6 months after the date in the created_at column in the user table.
+mysql> select date_add(created_at, interval 6 month) from users;
++----------------------------------------+
+| date_add(created_at, interval 6 month) |
++----------------------------------------+
+| 2025-06-23                             |
++----------------------------------------+
+
+6. Write a query to format the created_at column in the orders table as Day-Month-Year
+mysql> select date_format(created_at, '%d-%M-%Y') as date_format from users;
++------------------+
+| date_format      |
++------------------+
+| 23-December-2024 |
++------------------+
+
+7. Write a query to find the last day of the current month.
+mysql>  select last_day((select curdate())) as last_day;
++------------+
+| last_day   |
++------------+
+| 2024-12-31 |
++------------+
